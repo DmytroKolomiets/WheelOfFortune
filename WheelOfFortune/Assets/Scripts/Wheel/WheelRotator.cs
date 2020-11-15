@@ -15,8 +15,7 @@ public class WheelRotator : MonoBehaviour
     private int winningSegment;
 
     public void Rotate(int wheelSegments)
-    {
-        Debug.Log("Rotating...");
+    {        
         wheel.transform.eulerAngles = Vector3.zero;
         rotationAmount = GetWheelRotationAmount(wheelSegments);
         wheel.DORotate(new Vector3(0f, 0f, -rotationAmount), speed, RotateMode.FastBeyond360)
@@ -28,11 +27,16 @@ public class WheelRotator : MonoBehaviour
     private float GetWheelRotationAmount(int wheelSegments)
     {
         // + 360 to make sure that wheel will rotate at least for 360 dergee
-        winningSegment = Random.Range(0, wheelSegments + 1);
+        winningSegment = Random.Range(0, wheelSegments);
         return (winningSegment * GetWheelStep(wheelSegments)) + 360;
     }
     private float GetWheelStep(int wheelSegments)
     {
         return 360f / wheelSegments;
+    }
+    [Button]
+    private void Kill()
+    {
+        wheel.DOKill();
     }
 }

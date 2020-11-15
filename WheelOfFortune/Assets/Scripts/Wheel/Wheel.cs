@@ -25,6 +25,7 @@ public class Wheel : MonoBehaviour
     }
     public int GetReward(int segment)
     {
+        Debug.Log(segment);
         return rewardList[segment];
     }
     private void CreatWheel()
